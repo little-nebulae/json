@@ -15,7 +15,7 @@ export function parseJsonString(
     const syntaxError = error as SyntaxError;
     return fail(
       new InvalidJsonStringError({
-        message: "Failed to parse string as JSON.",
+        message: "Failed to parse string because it's not valid JSON.",
         cause: syntaxError,
         meta: null,
       }),
