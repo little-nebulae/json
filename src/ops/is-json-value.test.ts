@@ -38,3 +38,23 @@ describe("isJsonValue function should return true when", () => {
     expect(isJsonValue(object)).toBe(true);
   });
 });
+
+// Failure cases
+describe("isJsonValue function should return true when", () => {
+  test("the input value is an instance of the built-in Error class", () => {
+    const error = new Error("Something went wrong.");
+    expect(isJsonValue(error)).toBe(false);
+  });
+
+  test("the input value is undefined", () => {
+    const notDefined = undefined;
+    expect(isJsonValue(notDefined)).toBe(false);
+  });
+
+  test("the input value is a function", () => {
+    function hello(name: string) {
+      return `Hello, ${name}!`;
+    }
+    expect(isJsonValue(hello)).toBe(false);
+  });
+});
