@@ -1,11 +1,15 @@
 import { z } from "zod";
 
 import type {
+  JsonStringifiable,
   JsonStringifiableArray,
   JsonStringifiableObject,
 } from "@/types/stringifiable";
 
-import { stringifyUnknownValue } from "@/ops/stringify-unknown-value";
+import {
+  STRINGIFY_UNKNOWN_VALUE_ERROR_MESSAGE,
+  stringifyUnknownValue,
+} from "@/ops/stringify-unknown-value";
 
 export const JsonStringifiableObjectSchema = z
   .custom<JsonStringifiableObject>()
@@ -60,3 +64,11 @@ export const JsonStringifiableArraySchema = z
       });
     }
   });
+
+export const JsonStringifiableSchema = z.custom<JsonStringifiable>(
+  (value) => {
+    const result = stringifyUnknownValue({ value });
+    return result.success;
+  },
+  { error: STRINGIFY_UNKNOWN_VALUE_ERROR_MESSAGE },
+);
