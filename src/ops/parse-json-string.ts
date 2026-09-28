@@ -6,12 +6,12 @@ import type { JsonValue } from "@/types/value";
 
 import { InvalidJsonStringError } from "@/errors/invalid-json-string";
 
-export function parseJsonString(
+export function parseJsonString<T extends JsonValue = JsonValue>(
   text: string,
-): Result<JsonValue, InvalidJsonStringError> {
+): Result<T, InvalidJsonStringError> {
   try {
     const parsedValue = JSON.parse(text);
-    return succeed(parsedValue as JsonValue);
+    return succeed(parsedValue as T);
   } catch (error) {
     const syntaxError = error as SyntaxError;
     return fail(
