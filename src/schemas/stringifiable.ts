@@ -15,7 +15,9 @@ export const JsonStringifiableObjectSchema = z
         code: "invalid_type",
         expected: "object",
         message:
-          value === null ? "Value cannot be null." : "Value must be an object.",
+          value === null
+            ? "Value cannot be null."
+            : `Value must be an object. But got ${typeof value} instead.`,
       });
     }
 
@@ -35,7 +37,7 @@ export const JsonStringifiableArraySchema = z
       context.addIssue({
         code: "invalid_type",
         expected: "array",
-        message: "Value must be an array.",
+        message: `Value must be an array. But got ${typeof value} instead.`,
       });
     }
 
