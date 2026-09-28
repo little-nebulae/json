@@ -1,10 +1,10 @@
-import type { JSONType } from "zod";
+import type { JsonValue } from "@/types/value";
 
 export function stringifyJsonValue({
   value,
   space = 2,
 }: {
-  value: JSONType;
+  value: JsonValue;
   space?: string | number;
 }) {
   return JSON.stringify(value, null, space);

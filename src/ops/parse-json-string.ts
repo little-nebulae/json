@@ -1,16 +1,17 @@
 import type { Result } from "@little-nebulae/result";
-import type { JSONType } from "zod";
 
 import { fail, succeed } from "@little-nebulae/result";
+
+import type { JsonValue } from "@/types/value";
 
 import { InvalidJsonStringError } from "@/errors/invalid-json-string";
 
 export function parseJsonString(
   text: string,
-): Result<JSONType, InvalidJsonStringError> {
+): Result<JsonValue, InvalidJsonStringError> {
   try {
     const parsedValue = JSON.parse(text);
-    return succeed(parsedValue as JSONType);
+    return succeed(parsedValue as JsonValue);
   } catch (error) {
     const syntaxError = error as SyntaxError;
     return fail(

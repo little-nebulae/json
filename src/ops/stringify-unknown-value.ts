@@ -1,5 +1,4 @@
 import type { Result } from "@little-nebulae/result";
-import type { JSONType } from "zod";
 
 import { fail, succeed } from "@little-nebulae/result";
 
@@ -9,7 +8,7 @@ export function stringifyUnknownValue({
   value,
   space = 2,
 }: {
-  value: JSONType;
+  value: unknown;
   space?: string | number;
 }): Result<string, InvalidJsonValueError> {
   try {

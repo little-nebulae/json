@@ -1,7 +1,9 @@
-import type { JSONType } from "zod";
-
 import { z } from "zod";
 
-export function isJsonValue(value: unknown): value is JSONType {
-  return z.validate(z.json(), value);
+import type { JsonValue } from "@/types/value";
+
+import { JsonValueSchema } from "@/schemas/value";
+
+export function isJsonValue(value: unknown): value is JsonValue {
+  return z.validate(JsonValueSchema, value);
 }
