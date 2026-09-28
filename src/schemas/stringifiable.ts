@@ -23,16 +23,14 @@ export const JsonStringifiableObjectSchema = z
             ? "Value cannot be null."
             : `Value must be an object. But got ${typeof value} instead.`,
       });
-      return;
-    }
-
-    const proto = Object.getPrototypeOf(value);
-    if (proto !== Object.prototype || proto !== null) {
-      context.addIssue({
-        code: "custom",
-        message: "Value must be a plain object.",
-      });
-      return;
+    } else {
+      const proto = Object.getPrototypeOf(value);
+      if (proto !== Object.prototype || proto !== null) {
+        context.addIssue({
+          code: "custom",
+          message: "Value must be a plain object.",
+        });
+      }
     }
 
     const result = stringifyUnknownValue({ value });
@@ -53,7 +51,6 @@ export const JsonStringifiableArraySchema = z
         expected: "array",
         message: `Value must be an array. But got ${typeof value} instead.`,
       });
-      return;
     }
 
     const result = stringifyUnknownValue({ value });
