@@ -8,3 +8,4 @@ export * from "@/ops/stringify-json-stringifiable-value";
 export * from "@/ops/stringify-unknown-value";
 
 export type * from "@/types/value";
+export type { SuperJSONValue, SuperJSONResult } from "superjson";
