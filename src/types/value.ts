@@ -1,6 +1,6 @@
-import type { JsonPrimitive } from "@/types/primitive";
+export type JsonPrimitive = string | number | boolean | null;
 
-export type JsonObject = { [Key in string]: JsonValue };
+export type JsonObject = { [K: string]: JsonValue };
 
 export type JsonArray = JsonValue[] | readonly JsonValue[];
 
