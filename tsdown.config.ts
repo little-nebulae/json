@@ -9,4 +9,8 @@ export default defineConfig({
   // Lint options
   publint: true,
   attw: true,
+  // Rolldown config
+  outputOptions: {
+    keepNames: true,
+  },
 });
