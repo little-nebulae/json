@@ -5,7 +5,7 @@ import { composeErrorMessage, UnexpectedError } from "@little-nebulae/error";
 import { fail, succeed } from "@little-nebulae/result";
 import { serialize } from "superjson";
 
-export function jsonSerialize({
+export function tryJsonSerialize({
   value,
 }: {
   value: SuperJSONValue;
