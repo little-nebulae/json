@@ -52,5 +52,8 @@
       "onFail": "warn"
     }
   },
-  "packageManager": "pnpm@12.8.1"
+  "packageManager": "pnpm@12.8.1",
+  "dependencies": {
+    "superjson": "2.2.6"
+  }
 }
