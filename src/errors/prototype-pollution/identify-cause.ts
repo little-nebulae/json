@@ -14,5 +14,5 @@ export function identifyPrototypePollutionErrorCause({
   if (matches === null) {
     return matches;
   }
-  return matches[0] as DangerousProperty;
+  return matches[1] as DangerousProperty;
 }
