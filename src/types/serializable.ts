@@ -1,24 +1,24 @@
 import type { JsonValue } from "@/types/json";
 
-export type SerializableJsonPrimitive =
+export type SerializablePrimitive =
   | JsonValue
   | undefined
   | symbol
   | bigint
-  | Set<SerializableJsonValue>
-  | Map<SerializableJsonValue, SerializableJsonValue>
+  | Set<SerializableValue>
+  | Map<SerializableValue, SerializableValue>
   | Date
   | RegExp;
 
-export type SerializableJsonObject = {
-  [K: string]: SerializableJsonValue;
+export type SerializableObject = {
+  [K: string]: SerializableValue;
 };
 
-export type SerializableJsonArray =
-  | SerializableJsonValue[]
-  | readonly SerializableJsonValue[];
+export type SerializableArray =
+  | SerializableValue[]
+  | readonly SerializableValue[];
 
-export type SerializableJsonValue =
-  | SerializableJsonPrimitive
-  | SerializableJsonObject
-  | SerializableJsonArray;
+export type SerializableValue =
+  | SerializablePrimitive
+  | SerializableObject
+  | SerializableArray;
