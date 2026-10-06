@@ -9,6 +9,8 @@ import { attempt } from "@little-nebulae/result";
 
 import type { EncodedValue } from "@/types/encoded";
 
+import { ForbiddenEncodedPathSegmentError } from "@/errors/forbidden-encoded-path-segment/class";
+import { isForbiddenEncodedPathSegmentErrorCause } from "@/errors/forbidden-encoded-path-segment/is-cause";
 import { InvalidEncodedPathError } from "@/errors/invalid-encoded-path/class";
 import { isInvalidEncodedPathErrorCause } from "@/errors/invalid-encoded-path/is-cause";
 import { decode } from "@/ops/decode";
@@ -25,6 +27,9 @@ export function attemptDecode<T = unknown>(
     tryFn: () => decode<T>(value, options),
     catchFn: (error) => {
       const operation = "decode value";
+      if (isForbiddenEncodedPathSegmentErrorCause(error)) {
+        return new ForbiddenEncodedPathSegmentError({ cause: error });
+      }
       if (isInvalidEncodedPathErrorCause(error)) {
         return new InvalidEncodedPathError({ cause: error });
       }
