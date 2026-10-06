@@ -9,9 +9,16 @@ import type { EncodedValue } from "@/types/encoded";
 
 import { decode } from "@/ops/decode";
 
-export function attemptDecode<T = unknown>(value: EncodedValue) {
+export function attemptDecode<T = unknown>(
+  value: EncodedValue,
+  options: {
+    inPlace?: boolean;
+  } = {
+    inPlace: false,
+  },
+) {
   return attempt({
-    tryFn: () => decode<T>(value),
+    tryFn: () => decode<T>(value, options),
     catchFn: (error) => {
       const operation = "decode value";
       return new UnexpectedError({
@@ -20,7 +27,7 @@ export function attemptDecode<T = unknown>(value: EncodedValue) {
           reason: DEFAULT_FAILURE_REASON,
         }),
         cause: error,
-        meta: null,
+        meta: options,
       });
     },
   });
