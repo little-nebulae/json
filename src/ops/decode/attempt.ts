@@ -9,6 +9,8 @@ import { attempt } from "@little-nebulae/result";
 
 import type { EncodedValue } from "@/types/encoded";
 
+import { InvalidEncodedPathError } from "@/errors/invalid-encoded-path/class";
+import { isInvalidEncodedPathErrorCause } from "@/errors/invalid-encoded-path/is-cause";
 import { decode } from "@/ops/decode";
 
 export function attemptDecode<T = unknown>(
@@ -23,6 +25,9 @@ export function attemptDecode<T = unknown>(
     tryFn: () => decode<T>(value, options),
     catchFn: (error) => {
       const operation = "decode value";
+      if (isInvalidEncodedPathErrorCause(error)) {
+        return new InvalidEncodedPathError({ cause: error });
+      }
       if (isStackOverflowError(error)) {
         return new StackOverflowedError({
           message: composeErrorMessage({
