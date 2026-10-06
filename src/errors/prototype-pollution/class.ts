@@ -1,29 +1,32 @@
-import { BaseError } from "@little-nebulae/error";
+import type { Tagged } from "type-fest";
 
-import type { DangerousProperty } from "@/errors/prototype-pollution/identify-cause";
+import { BaseError } from "@little-nebulae/error";
 
 export const PROTOTYPE_POLLUTION_ERROR_CODE = "PROTOTYPE_POLLUTION_ERROR";
 export type PrototypePollutionErrorCode = typeof PROTOTYPE_POLLUTION_ERROR_CODE;
 
+export type PrototypePollutionErrorCauseTagName =
+  "PrototypePollutionErrorCause";
+export type PrototypePollutionErrorCause = Tagged<
+  Error,
+  PrototypePollutionErrorCauseTagName
+>;
+
 export class PrototypePollutionError extends BaseError<
   PrototypePollutionErrorCode,
-  Error,
+  PrototypePollutionErrorCause,
   null
 > {
   readonly name = "PrototypePollutionError";
   readonly code = PROTOTYPE_POLLUTION_ERROR_CODE;
-  readonly property: DangerousProperty;
 
   constructor({
     message,
     cause,
-    property,
   }: {
     message?: string;
-    cause: Error;
-    property: DangerousProperty;
+    cause: PrototypePollutionErrorCause;
   }) {
     super({ message: message ?? cause.message, cause, meta: null });
-    this.property = property;
   }
 }

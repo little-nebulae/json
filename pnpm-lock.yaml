@@ -200,6 +200,9 @@ importers:
       tsx:
         specifier: 4.23.15
         version: 4.23.15
+      type-fest:
+        specifier: 5.10.0
+        version: 5.10.0
       typescript:
         specifier: 7.0.2
         version: 7.0.2
