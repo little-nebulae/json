@@ -42,7 +42,7 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 *.db
 
 # Try scripts
-try.ts
+src/try.ts
 
 # Repo maps
 .maps
