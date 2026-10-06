@@ -9,6 +9,8 @@ import { attempt } from "@little-nebulae/result";
 
 import type { EncodableValue } from "@/types/encodable";
 
+import { PrototypePollutionError } from "@/errors/prototype-pollution/class";
+import { isPrototypePollutionErrorCause } from "@/errors/prototype-pollution/is-cause";
 import { encode } from "@/ops/encode";
 
 export function attemptEncode(value: EncodableValue) {
@@ -16,6 +18,9 @@ export function attemptEncode(value: EncodableValue) {
     tryFn: () => encode(value),
     catchFn: (error) => {
       const operation = "encode value";
+      if (isPrototypePollutionErrorCause(error)) {
+        return new PrototypePollutionError({ cause: error });
+      }
       if (isStackOverflowError(error)) {
         return new StackOverflowedError({
           message: composeErrorMessage({
