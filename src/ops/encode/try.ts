@@ -3,7 +3,7 @@ import {
   DEFAULT_FAILURE_REASON,
   UnexpectedError,
 } from "@little-nebulae/error";
-import { attempt, fail } from "@little-nebulae/result";
+import { attempt } from "@little-nebulae/result";
 
 import type { EncodableValue } from "@/types/encodable";
 
