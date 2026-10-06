@@ -15,3 +15,8 @@ export type CompositeTypeAnnotation =
   | SymbolTypeAnnotation
   | CustomTypeAnnotation;
 export type TypeAnnotation = SimpleTypeAnnotation | CompositeTypeAnnotation;
+
+export type Tree<T> = InnerNode<T> | Leaf<T>;
+export type Leaf<T> = [T];
+export type InnerNode<T> = [T, Record<string, Tree<T>>];
+export type MinimisedTree<T> = Tree<T> | Record<string, Tree<T>> | undefined;
