@@ -16,3 +16,8 @@ type Tree<T> = InnerNode<T> | Leaf<T>;
 type Leaf<T> = [T];
 type InnerNode<T> = [T, Record<string, Tree<T>>];
 export type MinimisedTree<T> = Tree<T> | Record<string, Tree<T>> | undefined;
+
+export type ReferentialEqualityAnnotations =
+  | Record<string, string[]>
+  | [string[]]
+  | [string[], Record<string, string[]>];
