@@ -1,3 +1,6 @@
+import type { Tagged } from "type-fest";
+
+import type { EncodableValue } from "@/types/encodable";
 import type { JsonValue } from "@/types/json";
 import type {
   MinimisedTree,
@@ -13,3 +16,10 @@ export type EncodedValue = {
     v?: number;
   };
 };
+
+export type EncodedValueOfTagName = "EncodedValueOf";
+export type EncodedValueOf<T extends EncodableValue> = Tagged<
+  EncodedValue,
+  EncodedValueOfTagName,
+  T
+>;
