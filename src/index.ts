@@ -7,5 +7,5 @@ export * from "@/ops/parse-json-string";
 export * from "@/ops/stringify-json-stringifiable-value";
 export * from "@/ops/stringify-unknown-value";
 
-export type * from "@/types/value";
+export type * from "@/types/json";
 export type { SuperJSONValue, SuperJSONResult } from "superjson";

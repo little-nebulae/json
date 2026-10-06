@@ -2,7 +2,7 @@ import type { Result } from "@little-nebulae/result";
 
 import { fail, succeed } from "@little-nebulae/result";
 
-import type { JsonValue } from "@/types/value";
+import type { JsonValue } from "@/types/json";
 
 import { InvalidJsonStringError } from "@/errors/invalid-json-string";
 

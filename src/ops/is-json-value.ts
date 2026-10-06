@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import type { JsonValue } from "@/types/value";
+import type { JsonValue } from "@/types/json";
 
 import { JsonValueSchema } from "@/schemas/value";
 

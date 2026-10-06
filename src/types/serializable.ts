@@ -1,4 +1,4 @@
-import type { JsonValue } from "@/types/value";
+import type { JsonValue } from "@/types/json";
 
 export type SerializableJsonPrimitive =
   | JsonValue
