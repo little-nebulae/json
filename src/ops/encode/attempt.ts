@@ -9,7 +9,7 @@ import type { EncodableValue } from "@/types/encodable";
 
 import { encode } from "@/ops/encode";
 
-export function tryEncode(value: EncodableValue) {
+export function attemptEncode(value: EncodableValue) {
   return attempt({
     tryFn: () => encode(value),
     catchFn: (error) =>
