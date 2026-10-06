@@ -5,7 +5,7 @@ import type {
   TypeAnnotation,
 } from "@/types/meta";
 
-export type Encoded = {
+export type EncodedValue = {
   json: JsonValue;
   meta?: {
     values?: MinimisedTree<TypeAnnotation>;
