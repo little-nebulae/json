@@ -13,7 +13,7 @@ import { PrototypePollutionError } from "@/errors/prototype-pollution/class";
 import { isPrototypePollutionErrorCause } from "@/errors/prototype-pollution/is-cause";
 import { encode } from "@/ops/encode";
 
-export function attemptEncode(value: EncodableValue) {
+export function attemptEncode<T extends EncodableValue>(value: T) {
   return attempt({
     tryFn: () => encode(value),
     catchFn: (error) => {

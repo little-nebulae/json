@@ -1,9 +1,9 @@
 import { serialize } from "superjson";
 
 import type { EncodableValue } from "@/types/encodable";
-import type { EncodedValue } from "@/types/encoded";
+import type { EncodedValueOf } from "@/types/encoded";
 
-export function encode(value: EncodableValue): EncodedValue {
+export function encode<T extends EncodableValue>(value: T): EncodedValueOf<T> {
   const encoded = serialize(value);
-  return encoded as EncodedValue;
+  return encoded as EncodedValueOf<T>;
 }
