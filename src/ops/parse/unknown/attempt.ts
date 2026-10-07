@@ -1,7 +1,7 @@
 import { attempt } from "@little-nebulae/result";
 
 import { InvalidJsonTextError } from "@/errors/invalid-json-text";
-import { parseUnknown } from "@/index";
+import { parseUnknown } from "@/ops/parse/unknown";
 
 export function attemptParseUnknown<T = unknown>(text: string) {
   return attempt({
