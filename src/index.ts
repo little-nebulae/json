@@ -1,5 +1,28 @@
+export * from "@/errors/forbidden-encoded-path-segment/class";
+export * from "@/errors/forbidden-encoded-path-segment/is-cause";
+export * from "@/errors/invalid-encoded-path/class";
+export * from "@/errors/invalid-encoded-path/is-cause";
+export * from "@/errors/prototype-pollution/class";
+export * from "@/errors/prototype-pollution/is-cause";
 export * from "@/errors/invalid-json-text";
 export * from "@/errors/invalid-json-value";
 
+export * from "@/ops/encode";
+export * from "@/ops/encode/attempt";
+export * from "@/ops/decode";
+export * from "@/ops/decode/attempt";
+export * from "@/ops/stringify";
+export * from "@/ops/stringify/attempt";
+export * from "@/ops/parse";
+export * from "@/ops/parse/attempt";
+export * from "@/ops/serialize";
+export * from "@/ops/serialize/attempt";
+export * from "@/ops/derialize";
+export * from "@/ops/derialize/attempt";
+
+export type * from "@/types/encodable";
+export type * from "@/types/encoded";
 export type * from "@/types/json";
-export type { SuperJSONValue, SuperJSONResult } from "superjson";
+export type * from "@/types/meta";
+export type * from "@/types/stringifiable";
+export type * from "@/types/stringified";
