@@ -15,8 +15,6 @@ export * from "@/ops/stringify";
 export * from "@/ops/stringify/attempt";
 export * from "@/ops/parse";
 export * from "@/ops/parse/attempt";
-export * from "@/ops/parse/unknown";
-export * from "@/ops/parse/unknown/attempt";
 export * from "@/ops/serialize";
 export * from "@/ops/serialize/attempt";
 export * from "@/ops/derialize";
