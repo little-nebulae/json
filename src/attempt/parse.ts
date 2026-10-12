@@ -2,7 +2,7 @@ import type { GetTagMetadata } from "type-fest";
 
 import { attempt } from "@little-nebulae/result";
 
-import type { JsonTextOf, JsonTextOfTagName } from "@/types/text-of";
+import type { JsonTextOf, JsonTextOfTagName } from "@/types";
 
 import { InvalidJsonTextError } from "@/errors";
 

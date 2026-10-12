@@ -6,7 +6,7 @@ import { succeed } from "@little-nebulae/result";
 import { wrapZodResult } from "@little-nebulae/zod";
 import { z } from "zod";
 
-import type { JsonTextOf } from "@/types/text-of";
+import type { JsonTextOf } from "@/types";
 
 export function attemptStringify<T>(
   value: T,
