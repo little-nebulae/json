@@ -29,6 +29,6 @@ export function attemptStringify<T>(
   }
   const validValue = zodParseResult.data;
 
-  const jsonText = JSON.stringify(validValue, null, space);
-  return succeed(jsonText as JsonTextOf<T>);
+  const text = JSON.stringify(validValue, null, space);
+  return succeed(text as JsonTextOf<T>);
 }
