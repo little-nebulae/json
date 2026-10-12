@@ -33,12 +33,12 @@
     "@arethetypeswrong/core": "0.18.5",
     "@little-nebulae/error": "1.3.0",
     "@little-nebulae/result": "1.3.0",
-    "@types/node": "26.6.4",
+    "@types/node": "26.6.5",
     "oxfmt": "0.72.0",
     "oxlint": "1.87.0",
-    "oxlint-tsgolint": "7.0.2003",
+    "oxlint-tsgolint": "7.0.2004",
     "publint": "0.3.25",
-    "tsdown": "0.23.0",
+    "tsdown": "0.23.1",
     "tsx": "4.23.15",
     "type-fest": "5.10.0",
     "typescript": "7.0.2",
@@ -52,9 +52,9 @@
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "12.10.1",
+      "version": "12.11.2",
       "onFail": "warn"
     }
   },
-  "packageManager": "pnpm@12.10.1"
+  "packageManager": "pnpm@12.11.2"
 }
