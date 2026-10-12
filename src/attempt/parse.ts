@@ -4,7 +4,7 @@ import { attempt } from "@little-nebulae/result";
 
 import type { JsonTextOf, JsonTextOfTagName } from "@/types/text-of";
 
-import { InvalidJsonTextError } from "@/errors/invalid-json-text";
+import { InvalidJsonTextError } from "@/error/classes/invalid-json-text";
 
 export function attemptParse<T extends JsonTextOf<unknown>>(text: T) {
   return attempt({

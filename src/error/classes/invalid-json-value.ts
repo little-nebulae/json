@@ -1,7 +1,8 @@
 import { BaseError } from "@little-nebulae/error";
 
-export const INVALID_JSON_VALUE_ERROR_CODE = "INVALID_JSON_VALUE_ERROR";
-export type InvalidJsonValueErrorCode = typeof INVALID_JSON_VALUE_ERROR_CODE;
+import type { InvalidJsonValueErrorCode } from "@/error/codes";
+
+import { INVALID_JSON_VALUE_ERROR_CODE } from "@/error/codes";
 
 export class InvalidJsonValueError extends BaseError<
   InvalidJsonValueErrorCode,
