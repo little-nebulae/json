@@ -1,4 +1,5 @@
 import type { Result } from "@little-nebulae/result";
+import type { $ZodIssue } from "zod/v4/core";
 
 import { fail, succeed } from "@little-nebulae/result";
 import { z } from "zod";
@@ -20,21 +21,29 @@ export function jsonStringify<T>(
         }
       | {
           lossless: false;
-          issues: z.core.$ZodIssue[];
+          issues: $ZodIssue[];
         };
   },
   JsonStringifyError
 > {
   const result = z.json().safeParse(value);
+
+  if (result.success) {
+    const text = JSON.stringify(result.data, null, space);
+    return succeed({
+      value: text as JsonTextOf<T>,
+      meta: { lossless: true },
+    });
+  }
+
+  const issues = result.error.issues;
   try {
     const text = JSON.stringify(value, null, space);
     return succeed({
       value: text as JsonTextOf<T>,
-      meta: result.success
-        ? { lossless: true }
-        : { lossless: false, issues: result.error.issues },
+      meta: { lossless: false, issues },
     });
   } catch (error) {
-    return fail(new JsonStringifyError({ cause: error as TypeError }));
+    return fail(new JsonStringifyError({ cause: error as TypeError, issues }));
   }
 }
