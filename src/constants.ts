@@ -1,0 +1,1 @@
+export const DEFAULT_JSON_STRINGIFY_SPACE = 2;
