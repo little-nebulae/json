@@ -17,7 +17,7 @@ export function jsonStringify<T>({
   space?: string | number;
 }): Result<
   {
-    value: JsonTextOf<T>;
+    text: JsonTextOf<T>;
     meta:
       | {
           lossless: true;
@@ -32,20 +32,14 @@ export function jsonStringify<T>({
   const result = z.json().safeParse(value);
 
   if (result.success) {
-    const text = JSON.stringify(result.data, null, space);
-    return succeed({
-      value: text as JsonTextOf<T>,
-      meta: { lossless: true },
-    });
+    const text = JSON.stringify(result.data, null, space) as JsonTextOf<T>;
+    return succeed({ text, meta: { lossless: true } });
   }
 
   const issues = result.error.issues;
   try {
-    const text = JSON.stringify(value, null, space);
-    return succeed({
-      value: text as JsonTextOf<T>,
-      meta: { lossless: false, issues },
-    });
+    const text = JSON.stringify(value, null, space) as JsonTextOf<T>;
+    return succeed({ text, meta: { lossless: false, issues } });
   } catch (error) {
     return fail(
       new JsonStringifyError({ cause: error as TypeError, meta: { issues } }),
