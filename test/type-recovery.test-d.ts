@@ -8,13 +8,13 @@ import { jsonStringifyStrict } from "@/stringify/strict";
 const originalValue = { hello: "Hello there!", bye: "Bye bye!" };
 
 test("jsonParseTaggedText should recover the original type passed to jsonStringifyStrict", () => {
-  const text = unwrap(jsonStringifyStrict(originalValue));
-  const parsedValue = unwrap(jsonParseTaggedText(text));
+  const text = unwrap(jsonStringifyStrict({ value: originalValue }));
+  const parsedValue = unwrap(jsonParseTaggedText({ text }));
   expectTypeOf(parsedValue).toEqualTypeOf(originalValue);
 });
 
 test("jsonParseTaggedText should recover the original type passed to jsonStringify", () => {
-  const { value: text } = unwrap(jsonStringify(originalValue));
-  const parsedValue = unwrap(jsonParseTaggedText(text));
+  const { text } = unwrap(jsonStringify({ value: originalValue }));
+  const parsedValue = unwrap(jsonParseTaggedText({ text }));
   expectTypeOf(parsedValue).toEqualTypeOf(originalValue);
 });
