@@ -10,10 +10,13 @@ import type { JsonTextOf } from "@/types";
 
 import { DEFAULT_JSON_STRINGIFY_SPACE } from "@/constants";
 
-export function jsonStringifyStrict<T>(
-  value: T,
-  space: string | number = DEFAULT_JSON_STRINGIFY_SPACE,
-): Result<JsonTextOf<T>, ZodParseError<JSONType>> {
+export function jsonStringifyStrict<T>({
+  value,
+  space = DEFAULT_JSON_STRINGIFY_SPACE,
+}: {
+  value: T;
+  space?: string | number;
+}): Result<JsonTextOf<T>, ZodParseError<JSONType>> {
   const result = wrapZodResult(z.json().safeParse(value));
 
   if (!result.success) {

@@ -9,10 +9,13 @@ import type { JsonTextOf } from "@/types";
 import { DEFAULT_JSON_STRINGIFY_SPACE } from "@/constants";
 import { JsonStringifyError } from "@/errors/stringify";
 
-export function jsonStringify<T>(
-  value: T,
-  space: string | number = DEFAULT_JSON_STRINGIFY_SPACE,
-): Result<
+export function jsonStringify<T>({
+  value,
+  space = DEFAULT_JSON_STRINGIFY_SPACE,
+}: {
+  value: T;
+  space?: string | number;
+}): Result<
   {
     value: JsonTextOf<T>;
     meta:
