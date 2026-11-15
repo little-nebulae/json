@@ -24,7 +24,7 @@ export function jsonStringify<T>(
           issues: $ZodIssue[];
         };
   },
-  JsonStringifyError
+  JsonStringifyError<{ issues: $ZodIssue[] }>
 > {
   const result = z.json().safeParse(value);
 
@@ -44,6 +44,8 @@ export function jsonStringify<T>(
       meta: { lossless: false, issues },
     });
   } catch (error) {
-    return fail(new JsonStringifyError({ cause: error as TypeError, issues }));
+    return fail(
+      new JsonStringifyError({ cause: error as TypeError, meta: { issues } }),
+    );
   }
 }
