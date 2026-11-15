@@ -2,9 +2,10 @@ import { attempt } from "@little-nebulae/result";
 
 import { JsonParseError } from "@/errors/parse";
 
-export function jsonParse<T = unknown>(text: string) {
+export function jsonParse<T = unknown>({ text }: { text: string }) {
   return attempt({
     tryFn: () => JSON.parse(text) as T,
-    catchFn: (error) => new JsonParseError({ cause: error as SyntaxError }),
+    catchFn: (error) =>
+      new JsonParseError({ cause: error as SyntaxError, meta: null }),
   });
 }
