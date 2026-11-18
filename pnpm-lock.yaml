@@ -184,9 +184,6 @@ importers:
       '@little-nebulae/result':
         specifier: 1.4.0
         version: 1.4.0
-      '@little-nebulae/zod':
-        specifier: 0.6.0
-        version: 0.6.0(@little-nebulae/error@1.4.1(type-fest@5.10.0))(@little-nebulae/result@1.4.0)(type-fest@5.10.0)(zod@4.6.7)
       '@oxc-node/cli':
         specifier: 1.0.2
         version: 1.0.2
@@ -217,9 +214,6 @@ importers:
       vitest:
         specifier: 5.1.0
         version: 5.1.0(@types/node@26.6.6)(vite@8.3.8(@types/node@26.6.6))
-      zod:
-        specifier: 4.6.7
-        version: 4.6.7
 
 packages:
 
@@ -265,14 +259,6 @@ packages:
 
   '@little-nebulae/result@1.4.0':
     resolution: {integrity: sha512-ItjYTaBxSXQf1+bxL6hqpySq2oG+STTCrGLxnHAZKNRrxfVt6MoC0LZvxKaOKB/VNr0uNfKvX/cKHJiWDYb5ZQ==}
-
-  '@little-nebulae/zod@0.6.0':
-    resolution: {integrity: sha512-7LFN+JnLT1TArsQj5/O+QrKkdDt4+ZRG0oagylOebKJhe1GR2swmdwJil6BMjW2+nLLiQCTSQiGdbuHP5Nxgxg==}
-    peerDependencies:
-      '@little-nebulae/error': ^1.0.0
-      '@little-nebulae/result': ^1.0.0
-      type-fest: ^5.0.0
-      zod: ^4.0.0
 
   '@loaderkit/resolve@1.0.6':
     resolution: {integrity: sha512-G8FdIoF5CypfwmD9rl8BXod5HDn8JqB0CCNBXDTaRZ+yRYhARrrSToX1zg1zy9jX3zLqigsELwhT4gNtkdQAUg==}
@@ -1529,9 +1515,6 @@ packages:
       '@yuku-toolchain/wasm':
         optional: true
 
-  zod@4.6.7:
-    resolution: {integrity: sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==}
-
 snapshots:
 
   '@andrewbranch/untar.js@1.0.4': {}
@@ -1590,13 +1573,6 @@ snapshots:
       type-fest: 5.10.0
 
   '@little-nebulae/result@1.4.0': {}
-
-  '@little-nebulae/zod@0.6.0(@little-nebulae/error@1.4.1(type-fest@5.10.0))(@little-nebulae/result@1.4.0)(type-fest@5.10.0)(zod@4.6.7)':
-    dependencies:
-      '@little-nebulae/error': 1.4.1(type-fest@5.10.0)
-      '@little-nebulae/result': 1.4.0
-      type-fest: 5.10.0
-      zod: 4.6.7
 
   '@loaderkit/resolve@1.0.6':
     dependencies:
@@ -2436,5 +2412,3 @@ snapshots:
       '@yuku-toolchain/linux-x64': 0.28.0
       '@yuku-toolchain/win32-arm64': 0.28.0
       '@yuku-toolchain/win32-x64': 0.28.0
-
-  zod@4.6.7: {}
