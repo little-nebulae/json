@@ -1,48 +1,29 @@
-import type { Result } from "@little-nebulae/result";
-import type { $ZodIssue } from "zod/v4/core";
-
-import { fail, succeed } from "@little-nebulae/result";
-import { z } from "zod";
-
-import type { JsonTextOf } from "@/types";
+import { composeErrorMessage, UnexpectedError } from "@little-nebulae/error";
+import { attempt } from "@little-nebulae/result";
 
 import { DEFAULT_JSON_STRINGIFY_SPACE } from "@/constants";
 import { JsonStringifyError } from "@/errors/stringify";
 
-export function jsonStringify<T>({
+export function jsonStringify({
   value,
   space = DEFAULT_JSON_STRINGIFY_SPACE,
 }: {
-  value: T;
+  value: unknown;
   space?: string | number;
-}): Result<
-  {
-    text: JsonTextOf<T>;
-    meta:
-      | {
-          lossless: true;
-        }
-      | {
-          lossless: false;
-          issues: $ZodIssue[];
-        };
-  },
-  JsonStringifyError<{ issues: $ZodIssue[] }>
-> {
-  const result = z.json().safeParse(value);
-
-  if (result.success) {
-    const text = JSON.stringify(result.data, null, space) as JsonTextOf<T>;
-    return succeed({ text, meta: { lossless: true } });
-  }
-
-  const issues = result.error.issues;
-  try {
-    const text = JSON.stringify(value, null, space) as JsonTextOf<T>;
-    return succeed({ text, meta: { lossless: false, issues } });
-  } catch (error) {
-    return fail(
-      new JsonStringifyError({ cause: error as TypeError, meta: { issues } }),
-    );
-  }
+}) {
+  return attempt({
+    tryFn: () => JSON.stringify(value, null, space),
+    catchFn: (error) => {
+      if (error instanceof TypeError) {
+        return new JsonStringifyError({ cause: error, meta: null });
+      }
+      return new UnexpectedError({
+        message: composeErrorMessage({
+          operation: "convert value to JSON string",
+        }),
+        cause: error,
+        meta: null,
+      });
+    },
+  });
 }
