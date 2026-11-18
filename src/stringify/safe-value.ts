@@ -2,7 +2,7 @@ import type { Jsonifiable } from "type-fest";
 
 import { DEFAULT_JSON_STRINGIFY_SPACE } from "@/constants";
 
-export function jsonStringifyLossyValue({
+export function jsonStringifySafeValue({
   value,
   space = DEFAULT_JSON_STRINGIFY_SPACE,
 }: {
