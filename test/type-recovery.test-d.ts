@@ -2,19 +2,12 @@ import { unwrap } from "@little-nebulae/result";
 import { expectTypeOf, test } from "vitest";
 
 import { jsonParseTaggedText } from "@/parse/tagged-text";
-import { jsonStringify } from "@/stringify";
-import { jsonStringifyStrict } from "@/stringify/strict";
+import { jsonStringifyLosslessValue } from "@/stringify/lossless-value";
 
-const originalValue = { hello: "Hello there!", bye: "Bye bye!" };
+const originalValue = { hello: "Hello there!", bye: "Bye bye!" } as const;
 
-test("jsonParseTaggedText should recover the original type passed to jsonStringifyStrict", () => {
-  const text = unwrap(jsonStringifyStrict({ value: originalValue }));
-  const parsedValue = unwrap(jsonParseTaggedText({ text }));
-  expectTypeOf(parsedValue).toEqualTypeOf(originalValue);
-});
-
-test("jsonParseTaggedText should recover the original type passed to jsonStringify", () => {
-  const { text } = unwrap(jsonStringify({ value: originalValue }));
+test("jsonParseTaggedText should recover the original type passed to jsonStringifyLosslessValue", () => {
+  const text = jsonStringifyLosslessValue({ value: originalValue });
   const parsedValue = unwrap(jsonParseTaggedText({ text }));
   expectTypeOf(parsedValue).toEqualTypeOf(originalValue);
 });
