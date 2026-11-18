@@ -1,3 +1,4 @@
+import { composeErrorMessage, UnexpectedError } from "@little-nebulae/error";
 import { attempt } from "@little-nebulae/result";
 
 import { JsonParseError } from "@/errors/parse";
@@ -5,7 +6,17 @@ import { JsonParseError } from "@/errors/parse";
 export function jsonParse<T = unknown>({ text }: { text: string }) {
   return attempt({
     tryFn: () => JSON.parse(text) as T,
-    catchFn: (error) =>
-      new JsonParseError({ cause: error as SyntaxError, meta: null }),
+    catchFn: (error) => {
+      if (error instanceof SyntaxError) {
+        return new JsonParseError({ cause: error, meta: null });
+      }
+      return new UnexpectedError({
+        message: composeErrorMessage({
+          operation: "parse JSON text",
+        }),
+        cause: error,
+        meta: null,
+      });
+    },
   });
 }
