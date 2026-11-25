@@ -1,5 +1,5 @@
 import { composeErrorMessage, UnexpectedError } from "@little-nebulae/error";
-import { attempt } from "@little-nebulae/result";
+import { produceResult } from "@little-nebulae/result";
 
 import { DEFAULT_JSON_STRINGIFY_SPACE } from "@/constants";
 import { JsonStringifyError } from "@/errors/stringify";
@@ -11,7 +11,7 @@ export function jsonStringify({
   value: unknown;
   space?: string | number;
 }) {
-  return attempt({
+  return produceResult({
     tryFn: () => JSON.stringify(value, null, space),
     catchFn: (error) => {
       if (error instanceof TypeError) {
